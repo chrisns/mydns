@@ -28,7 +28,7 @@ resource "cloudflare_record" "www" {
 
 resource "cloudflare_record" "A" {
   count = var.redirect_nowww ? 1 : 0
-  zone_id = cloudflare_zone.zone[count.index].id
+  zone_id = cloudflare_zone.zone.id
   name    = "@"
   value   = "45.55.72.95"
   type    = "A"
@@ -37,7 +37,7 @@ resource "cloudflare_record" "A" {
 
 resource "cloudflare_record" "txt" {
   count = var.redirect_nowww ? 1 : 0
-  zone_id = cloudflare_zone.zone[count.index].id
+  zone_id = cloudflare_zone.zone.id
   name    = "_redirect"
   value   = "Redirects from /* to http://www.${var.domain}/*"
   type    = "TXT"
